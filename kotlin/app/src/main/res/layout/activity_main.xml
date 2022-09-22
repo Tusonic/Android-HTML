@@ -8,9 +8,10 @@
     tools:context="com.mukesh.markdownview.example.MainActivity"
     >
 
-  <com.mukesh.MarkdownView
+  <!-- <com.mukesh.Markdown
       android:id="@+id/markdown_view"
       android:layout_width="match_parent"
       android:layout_height="match_parent"
-      />
+      /> -->
+
 </RelativeLayout>

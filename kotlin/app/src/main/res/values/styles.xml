@@ -1,6 +1,7 @@
 <resources>
 
-  <style name="Theme.ComposeView" parent="android:Theme.DeviceDefault.Light.NoActionBar.Fullscreen">
+  <!-- <style name="Theme.ComposeView" parent="android:Theme.DeviceDefault.Light.NoActionBar.Fullscreen"> -->
+  <style name="Theme.ComposeView" parent="android:Theme.DeviceDefault.NoActionBar.Fullscreen">
     <item name="android:statusBarColor">@color/colorPrimary</item>
   </style>
 </resources>
