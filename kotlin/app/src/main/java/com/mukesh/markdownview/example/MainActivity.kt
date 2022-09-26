@@ -1,10 +1,13 @@
 package com.mukesh.markdownview.example
 
+import android.app.AlertDialog
 import android.content.Context
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.mukesh.MarkDown
@@ -12,9 +15,12 @@ import com.mukesh.otpview_example.ui.theme.ComposeTheme
 import java.io.File
 import java.net.URL
 
+
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+
         setContent {
             ComposeTheme {
                 Column(
@@ -38,13 +44,26 @@ class MainActivity : ComponentActivity() {
 
                     // Display markdown via URL
                     MarkDown(
-                        url = URL("https://tusonic.pl"),
+                        url = URL("https://raw.githubusercontent.com/mukeshsolanki/MarkdownView-Android/main/README.md"),
                         modifier = Modifier.fillMaxSize()
                     )
                 }
             }
         }
     }
+
+    override fun onBackPressed() {
+        AlertDialog.Builder(this)
+            .setMessage("Are You Sure ?")
+            .setCancelable(false)
+            .setPositiveButton(
+                "Yes"
+            ) { dialog, id -> finish() }
+            .setNegativeButton("No", null)
+            .show()
+    }
+
+
 }
 
 fun getFileFromAssets(context: Context, fileName: String): File = File(context.cacheDir, fileName)

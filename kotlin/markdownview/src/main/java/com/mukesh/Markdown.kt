@@ -4,8 +4,8 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.util.Base64
 import android.util.Log
-import android.view.View
 import android.view.ViewGroup
+import android.view.View
 import android.webkit.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
@@ -28,7 +28,6 @@ private const val TAG = "MarkDown"
  * @param text - The text used to generate the Markdown.
  * @param shouldOpenUrlInBrowser - Flag that tells the composable if it needs to open urls in a the browser or in the same view.
  */
-@Suppress("DEPRECATION")
 @Composable
 fun MarkDown(
     modifier: Modifier = Modifier,
@@ -37,7 +36,7 @@ fun MarkDown(
 ) {
     val bs64MdText: String = imgToBase64(text)
     val escMdText: String = escapeForText(bs64MdText)
-    val previewText = "index('$escMdText')"
+    val previewText = "preview('$escMdText')"
     AndroidView(factory = { context ->
         WebView(context).apply {
             layoutParams = ViewGroup.LayoutParams(
@@ -60,10 +59,7 @@ fun MarkDown(
                     return false
                 }
             }
-
             loadUrl("file:///android_asset/html/index.html")
-           // loadUrl("http://tusonic.pl")
-
             @SuppressLint("SetJavaScriptEnabled")
             settings.javaScriptEnabled = true
             settings.mixedContentMode = WebSettings.MIXED_CONTENT_ALWAYS_ALLOW
@@ -77,8 +73,8 @@ fun MarkDown(
                     or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION // hide nav bar
                     or View.SYSTEM_UI_FLAG_FULLSCREEN // hide status bar
                     or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY)
-            }
 
+        }
     }, modifier = modifier)
 }
 
@@ -161,7 +157,7 @@ private fun escapeForText(mdText: String): String {
 }
 
 private fun imgToBase64(mdText: String): String {
-    val ptn = Pattern.compile("!\\[(.*)]\\((.*)\\)")
+    val ptn = Pattern.compile("!\\[(.*)\\]\\((.*)\\)")
     val matcher = ptn.matcher(mdText)
     if (!matcher.find()) {
         return mdText
