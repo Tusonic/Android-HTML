@@ -3,7 +3,7 @@ plugins {
     id 'org.jetbrains.kotlin.android'
 }
 
-group = 'com.github.mukeshsolanki'
+group = 'com.github.tusonic'
 
 android {
     compileSdk 32

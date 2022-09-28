@@ -1,4 +1,4 @@
-package com.mukesh.markdownview.example
+package pl.tusonic.apk
 
 import android.app.AlertDialog
 import android.content.Context
